@@ -31,11 +31,6 @@ final class PIHomeViewController: PIViewController {
         setupTableView()
         output?.getAllTracks()
     }
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        setupTableView()
-//        output?.getAllTracks()
-//    }
     //Setup TableView
     func setupTableView() {
         tracksTableView.register(UINib(nibName: "TracksTableViewCell", bundle: nil),

@@ -55,14 +55,6 @@ final class PIHomeDetailsViewController: PIViewController {
         labelTrackName.text = trackDetail?.trackName
         labelGenere.text = trackDetail?.genere
         trackImageView.makeRound()
-        output?.doSomething()
-    }
-    func setBlurEffectView() {
-        let blurEffect = UIBlurEffect(style: .light)
-        let blurView = UIVisualEffectView(effect: blurEffect)
-        blurView.frame = backgroundImageView.bounds
-        backgroundImageView.addSubview(blurView)
-        view.bringSubviewToFront(backgroundView)
     }
 }
 

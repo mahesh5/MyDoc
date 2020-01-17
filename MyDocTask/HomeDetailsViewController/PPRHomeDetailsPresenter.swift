@@ -33,12 +33,6 @@ final class PPRHomeDetailsPresenter {
 extension PPRHomeDetailsPresenter: PPHomeDetailsPresenterInput {
 
     // MARK: - Presentation logic
-    func showSpinner() {
-    }
-
-    func hideSpinner() {
-    }
-
     func display(_ error: Error?) {
         let viewModel = PVMHomeDetailsViewModel()
         output?.display(with: viewModel)

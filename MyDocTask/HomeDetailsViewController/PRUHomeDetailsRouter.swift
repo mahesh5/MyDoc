@@ -12,7 +12,6 @@ protocol PPHomeDetailsRouterProtocol {
 
     var viewController: PIHomeDetailsViewController? { get }
 
-    func navigateToSomewhere()
 }
 
 final class PRUHomeDetailsRouter {
@@ -30,7 +29,5 @@ final class PRUHomeDetailsRouter {
 extension PRUHomeDetailsRouter: PPHomeDetailsRouterProtocol {
 
     // MARK: - Navigation
-    func navigateToSomewhere() {
 
-    }
 }
