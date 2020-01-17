@@ -6,7 +6,7 @@
 3. Added pagination while scrolling the table
 4. Navigation to detail page
 5. Strictly follwed clean architecture 
-6. Frameworks used 
+6. Used Swift Package Manager for integrating frameworks. 
      1. Alamofire
      2. Promises 
      3. Realm
