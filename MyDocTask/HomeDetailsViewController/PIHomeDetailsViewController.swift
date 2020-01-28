@@ -52,7 +52,7 @@ final class PIHomeDetailsViewController: PIViewController {
         trackImageView.image = newImage
         labelTrackDescription.text = trackDetail?.collectionName
         labelTrackReleaseDate.text = trackDetail?.releaseDate
-        labelTrackName.text = trackDetail?.trackName
+        labelTrackName.text = "\(PCString.trackName)\(trackDetail?.trackName ?? PCString.blank)"
         labelGenere.text = trackDetail?.genere
         trackImageView.makeRound()
     }

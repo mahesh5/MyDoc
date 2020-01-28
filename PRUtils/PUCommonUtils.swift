@@ -57,7 +57,6 @@ extension String {
         let date = dateFormatter.date(from: self)
         return date
     }
-    
 }
 extension Date {
     func getDateString(format: String = "MMM d, yyyy") -> String {
@@ -70,4 +69,42 @@ extension Date {
 public typealias playlistURL = PNURLEndPoints
 public struct PNURLEndPoints {
     let baseURL = "https://itunes.apple.com/lookup?amgArtistId=468749,5723&entity=song&limit=50&sort=recent"
+
+}
+// Common String
+public struct PCString {
+    public static let blank: String = ""
+    public static let myDoc: String = "MyDoc"
+    public static let ok: String = "Ok"
+    public static let failLoad: String = "Failed to load data from server."
+    public static let noInternet: String = "No internet connection."
+    public static let nibCell: String = "TracksTableViewCell"
+    public static let identifier: String = "HomeCell"
+    public static let genere: String = "Genere: "
+    public static let releaseDate: String = "Album Release Date: "
+    public static let main: String = "Main"
+    public static let detailVC: String = "IKDetailVC"
+    public static let trackName: String = "Track Name: "
+}
+
+
+extension MutableCollection {
+
+    /// gets the element at the specified index if it is within collection bounds, otherwise return nil.
+    ///
+    /// - Parameter index: index of object in array
+    public subscript (safe index: Index) -> Element? {
+
+        get {
+            return (self.count > distance(from: startIndex, to: index)) ? self[index] : nil
+        }
+
+        //this sets a new value to the mutable collection to change it
+        set(newValue) {
+            if self.count > distance(from: startIndex, to: index),
+                let newValueUW = newValue {
+                self[index] = newValueUW
+            }
+        }
+    }
 }

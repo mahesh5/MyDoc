@@ -17,8 +17,8 @@ class TracksTableViewCell: UITableViewCell {
         trackImageView.makeRound()
     }
     func updateLabel(data: PVMTracks) {
-        labelTitle.text = data.artistName
-        let trackImage = PHUtilHelper.shared.getImageFromPath(imagePath: data.trackImage ?? "")
+        labelTitle.text = data.trackName
+        let trackImage = PHUtilHelper.shared.getImageFromPath(imagePath: data.trackImage ?? PCString.blank)
         trackImageView.image = trackImage
         labelTrackInfo.text = data.collectionName
     }
@@ -26,10 +26,4 @@ class TracksTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 }
-//class ImageFromPath {
-//    func getImageFromPath(imagePath: String?) -> UIImage? {
-//        let imageUrl = URL(fileURLWithPath: imagePath ?? "")
-//        let image = UIImage(contentsOfFile: imageUrl.path)
-//        return image
-//    }
-//}
+

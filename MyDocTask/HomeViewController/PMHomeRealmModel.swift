@@ -46,8 +46,8 @@ import Realm
 @objcMembers class StoredTracks: Object, Decodable {
     dynamic var id = 0
     dynamic var artistType: String? = nil
-    dynamic var artistName: String = ""
-    dynamic var artistLinkUrl: String = ""
+    dynamic var artistName: String = PCString.blank
+    dynamic var artistLinkUrl: String = PCString.blank
     dynamic var artistId: Int = 0
     dynamic var amgArtistId: Int = 0
     dynamic var previewUrl: String?

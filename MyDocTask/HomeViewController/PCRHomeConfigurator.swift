@@ -17,7 +17,6 @@ final class PCRHomeConfigurator: PPBaseConfig {
     static let sharedInstance: PCRHomeConfigurator = PCRHomeConfigurator()
 
     // MARK: - Configuration
-
     func configure(viewController: UIViewController)  {
 
         if let viewControllerUW = viewController as? PIHomeViewController {

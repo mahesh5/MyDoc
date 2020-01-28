@@ -33,8 +33,8 @@ final class PIHomeViewController: PIViewController {
     }
     //Setup TableView
     func setupTableView() {
-        tracksTableView.register(UINib(nibName: "TracksTableViewCell", bundle: nil),
-                                 forCellReuseIdentifier: "HomeCell")
+        tracksTableView.register(UINib(nibName: PCString.nibCell, bundle: nil),
+                                 forCellReuseIdentifier: PCString.identifier)
         tracksTableView.tableFooterView = UIView()
         var index = 0
         while index < limit {
@@ -76,8 +76,8 @@ final class PIHomeViewController: PIViewController {
 // MARK: - PPHomePresenterOutput
 extension PIHomeViewController: PPHomePresenterOutput {
     func displayErrorMessage(message: String) {
-        let alert = UIAlertController(title: "MyDoc", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        let alert = UIAlertController(title: PCString.myDoc, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: PCString.ok, style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -103,16 +103,16 @@ extension PIHomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
     // Provide a cell object for each row.
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCell",
+        let cell = tableView.dequeueReusableCell(withIdentifier: PCString.identifier,
                                                   for: indexPath)
            as?   TracksTableViewCell
         if let cell = cell {
             if isSearch {
-                if let response = searchArray?[indexPath.row] {
+                if let response = searchArray?[safe: indexPath.row] {
                     cell.updateLabel(data: response)
                 }
             } else {
-                if let response = tracksVM?.tracks?[indexPath.row] {
+                if let response = tracksVM?.tracks?[safe: indexPath.row] {
                     cell.updateLabel(data: response)
                 }
             }
@@ -123,9 +123,9 @@ extension PIHomeViewController: UITableViewDataSource, UITableViewDelegate {
      }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if isSearch {
-           navigateToDetailRouter(tracks: searchArray?[indexPath.row])
+            navigateToDetailRouter(tracks: searchArray?[safe: indexPath.row])
         } else {
-            navigateToDetailRouter(tracks: tracksVM?.tracks?[indexPath.row])
+            navigateToDetailRouter(tracks: tracksVM?.tracks?[safe: indexPath.row])
         }
         searchBar.resignFirstResponder()
     }
@@ -159,7 +159,7 @@ extension PIHomeViewController: UISearchBarDelegate {
             reloadTableView()
         } else {
             isSearch = true
-            searchArray = searchText.isEmpty ? tracksVM?.tracks : tracksVM?.tracks?.filter { ($0.artistName?.contains(searchText))! }
+            searchArray = searchText.isEmpty ? tracksVM?.tracks : tracksVM?.tracks?.filter { ($0.trackName?.contains(searchText))! }
             if searchArray?.count == 0 {
                 tracksTableView.isHidden = true
             } else {

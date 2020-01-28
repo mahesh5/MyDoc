@@ -32,8 +32,8 @@ extension PRUHomeRouter: PPHomeRouterProtocol {
     func navigateToDetailVC(selectedTrack: PVMTracks?) {
         let config = PCRHomeDetailsConfigurator()
         config.configure(viewController: PIHomeDetailsViewController())
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = mainStoryboard.instantiateViewController(withIdentifier: "IKDetailVC") as! PIHomeDetailsViewController
+        let mainStoryboard = UIStoryboard(name: PCString.main, bundle: nil)
+        let vc = mainStoryboard.instantiateViewController(withIdentifier: PCString.detailVC) as! PIHomeDetailsViewController
         vc.trackDetail = selectedTrack
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }

@@ -36,14 +36,15 @@ extension PPRHomePresenter: PPHomePresenterInput {
     // MARK: - Presentation logic
     func presentData(vm: Tracks) {
         var arrayTracks: [PVMTracks] = []
-        vm.tracks?.forEach { item in
+        let sortedTracks = sortTrackByName(tracks: vm.tracks)
+        sortedTracks?.forEach { item in
             let date = item.releaseDate?.convertToDate()
             let viewModel = PVMTracks(artistName: item.artistName,
-                                      trackName: "Track Name: \(item.trackName ?? "")",
+                                      trackName: item.trackName ?? PCString.blank,
                                       trackImage: item.trackImage,
                                       collectionName: item.collectionName,
-                                      releaseDate: "Album Release Date: \(date?.getDateString() ?? "")",
-                                       genere: "Genere: \(item.genere ?? "")")
+                                      releaseDate: "\(PCString.releaseDate)\(date?.getDateString() ?? PCString.blank)",
+                                      genere: "\(PCString.genere)\(item.genere ?? PCString.blank)")
             arrayTracks.append(viewModel)
         }
         let mapVM = PVMHomeViewModel(count: vm.count, tracks: arrayTracks)
@@ -52,5 +53,11 @@ extension PPRHomePresenter: PPHomePresenterInput {
     // Error Message
     func displayErrorMessage(message: String) {
         output?.displayErrorMessage(message: message)
+    }
+    // Sort Track by name
+    func sortTrackByName(tracks: [TracksList]?) -> [TracksList]? {
+        return tracks?.sorted { ($0.trackName ?? PCString.blank)
+            .localizedStandardCompare($1.trackName ?? PCString.blank) == .orderedAscending
+        }
     }
 }

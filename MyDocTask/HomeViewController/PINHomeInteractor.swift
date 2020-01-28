@@ -63,10 +63,10 @@ extension PINHomeInteractor: PPHomeInteractorInput {
                     PUProgressView.shared.hideProgressView()
             }.catch {_ in
                 PUProgressView.shared.hideProgressView()
-                self.output.displayErrorMessage(message: "Failed to load data from server.")
+                self.output.displayErrorMessage(message: PCString.failLoad)
             }
         } else {
-            self.output.displayErrorMessage(message: "No internet connection.")
+            self.output.displayErrorMessage(message: PCString.noInternet)
         }
     }
 }

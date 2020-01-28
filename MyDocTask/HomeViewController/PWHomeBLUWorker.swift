@@ -55,18 +55,21 @@ class PVMRealmMapper {
         var index = 0
         data.results?.forEach { value in
             let items = StoredTracks()
-            items.id = value.artistId ?? 0
+            items.id = index
             items.artistId = value.artistId ?? 0
-            items.artistLinkUrl = value.artworkUrl100 ?? ""
-            items.artistType = value.primaryGenreName ?? ""
-            items.artistName = value.artistName ?? ""
-            items.collectionName = value.collectionName ?? ""
-            items.releaseDate = value.releaseDate ?? ""
-            items.trackName = value.trackName ?? ""
+            items.artistLinkUrl = value.artworkUrl100 ?? PCString.blank
+            items.artistType = value.primaryGenreName ?? PCString.blank
+            items.artistName = value.artistName ?? PCString.blank
+            items.collectionName = value.collectionName ?? PCString.blank
+            items.releaseDate = value.releaseDate ?? PCString.blank
+            items.trackName = value.trackName ?? PCString.blank
             let convert  = PHUtilHelper.shared.getDocumentDirectoryImagePath(imageURL: items.artistLinkUrl, index: index)
-             index += 1
             items.artistLinkUrl = convert
-            values.append(items)
+            //Artist id doesn't have value.
+            if value.amgArtistId == nil {
+                values.append(items)
+            }
+            index += 1
         }
         return values
     }
