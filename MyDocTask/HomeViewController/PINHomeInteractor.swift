@@ -53,7 +53,9 @@ extension PINHomeInteractor: PPHomeInteractorInput {
     func savePlayListToDB() {
         if reachability.isInternetAvailable {
             PUProgressView.shared.showProgressView()
-            let worker = apiWorker.getPlayList()
+            // Method to return from generics
+             let worker = apiWorker.getUrl(type: Playlist.self)
+           // let worker = apiWorker.getPlayList()
             worker
                 .then {
                     data in
